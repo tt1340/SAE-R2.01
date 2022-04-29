@@ -51,11 +51,22 @@ public class RobotNickel extends Robot{
     public int getIndice() {
         return indice;
     }
-    //  TO STRING METHOD
+
     public String toString(){
         String s = "";
         s+= "R " + this.getIndice() + " Cordonnee X :"+ this.getX()+ " Coordonnee Y "+this.getY();
         s+="\n Stock Max Nickel :"+this.getStockMax()+ " StockInitial Nickel "+this.getStockInitial()+ " Capacite d'extraction Nickel :"+this.getCapaciteExtraction();
         return s ;
     }
+
+    // methode pour calculer le nombre de minerais que peut prendre un robot
+    public int quantiteRecup(){
+        return 0;
+    }
+    // methode pour récupérer des minerais dans une mine
+    public void recupMinerais(int quantite){
+
+    }
+
+    // methode pour déposer dans les entrepots
 }

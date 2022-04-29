@@ -1,16 +1,14 @@
+import java.util.Random;
+
 public abstract class Mine {
-    private int x ;
-    private int  y;
+    private final int x ;
+    private final int y;
 
     // CONSTRUCTOR
     public Mine(){
-        this.x = 0 ;
-        this.y = 0 ;
-    }
-
-    public Mine(int x , int y ){
-        this.x = x ;
-        this.y = y ;
+        Random random = new Random();
+        this.x = random.nextInt(10);
+        this.y = random.nextInt(10);
     }
     // GETTER AND SETTER
     public int getX() {
@@ -21,11 +19,4 @@ public abstract class Mine {
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
 }

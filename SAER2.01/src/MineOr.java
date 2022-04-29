@@ -5,16 +5,10 @@ public class MineOr extends Mine {
     private final int quantiteOr;
     private int orRestant ;
 
-    //CONSTRUCTOR
-    public MineOr(){
+    // CONSTRUCTOR
+    public MineOr(int indice){
         super();
-        this.indice = 0 ;
-        this.quantiteOr = 55 ;
-        this.orRestant = 55 ;
-    }
-
-    public MineOr(int x , int y, Random random , int indice){
-        super(x,y);
+        Random random = new Random();
         this.quantiteOr = 50+ random.nextInt(101-50);
         this.indice = indice ;
         this.orRestant = quantiteOr ;
@@ -38,11 +32,17 @@ public class MineOr extends Mine {
     }
 
     // TO STRING METHOD
-    public String toString(){
-        String s = "";
-        s+= "M" + this.getIndice() + " Coordonnee X :" + this.getX() + " Coordonnee Y :" + this.getY() ;
-        s+= "\n Quantite d'or" + this.orRestant + "/"+this.quantiteOr ;
-        return s ;
+    // affichage des données pour faire un recap du monde
+    public String toStringGeneral(){
+        String res ="M "+this.getIndice() + " ";
+        res = res + this.getX() + "\t" +  this.getY() + " OR " + this.getOrRestant() + " / " + this.getQuantiteOr();
+        return res;
+    }
+    public String toStringMap(){
+        String res = "_______\n";
+        res = res + "|M |"+this.getIndice()+" |\n";
+        res = res + "|  |  |\n¯¯¯¯¯¯¯";
+        return res ;
     }
 
 

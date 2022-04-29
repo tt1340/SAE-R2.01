@@ -60,4 +60,8 @@ public class RobotOr extends Robot{
         return s ;
     }
 
+    // methode pour récupérer des minerais
+
+    // methode pour déposer des minerais dans un entrepot
+
 }
