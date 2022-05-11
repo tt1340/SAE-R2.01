@@ -1,3 +1,5 @@
+package Mines;
+
 import java.util.Random;
 
 public class MineOr extends Mine {
@@ -29,6 +31,11 @@ public class MineOr extends Mine {
 
     public void setOrRestant(int orRestant) {
         this.orRestant = orRestant;
+    }
+
+    // methode pour récupérer des minerais
+    public void minageOr(){
+        //todo
     }
 
     // TO STRING METHOD

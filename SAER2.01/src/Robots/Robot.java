@@ -1,7 +1,9 @@
+package Robots;
+
 import Exceptions.SortieMapException;
+import Monde.ComposantMonde;
 
-
-public abstract class Robot {
+public abstract class Robot extends ComposantMonde {
     private int x ;
     private int y ;
 

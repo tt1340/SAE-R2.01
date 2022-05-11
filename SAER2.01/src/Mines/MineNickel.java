@@ -1,6 +1,8 @@
+package Mines;
+
 import java.util.Random;
 
-public class MineNickel extends Mine{
+public class MineNickel extends Mine {
     private final int indice ;
     private int quantiteNickel ;
     private int nickelRestant ;
@@ -31,6 +33,11 @@ public class MineNickel extends Mine{
 
     public void setNickelRestant(int nickelRestant) {
         this.nickelRestant = nickelRestant;
+    }
+
+    // methode pour récupérer des minerais
+    public void recupNickel(){
+        //todo
     }
 
     // TO STRING METHOD

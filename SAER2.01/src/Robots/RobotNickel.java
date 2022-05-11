@@ -1,6 +1,6 @@
-import java.util.Random;
+package Robots;
 
-public class RobotNickel extends Robot{
+public class RobotNickel extends Robot {
     private final int indice ;
     private int stockMax ;
     private int stockInitial ;
@@ -15,14 +15,6 @@ public class RobotNickel extends Robot{
         this.indice = 0 ;
     }
 
-    public RobotNickel(int x , int y, Random random, int indice){
-        super(x,y);
-        this.stockMax = 5+random.nextInt(10-5);
-        this.stockInitial = 0 ;
-        this.capaciteExtraction = 1+ random.nextInt(4-1);
-        this.indice = indice ;
-
-    }
     // GETTER AND SETTER
     public int getStockMax() {
         return stockMax;
@@ -61,12 +53,17 @@ public class RobotNickel extends Robot{
 
     // methode pour calculer le nombre de minerais que peut prendre un robot
     public int quantiteRecup(){
+        //todo
         return 0;
     }
+
     // methode pour récupérer des minerais dans une mine
     public void recupMinerais(int quantite){
-
+        //todo
     }
 
     // methode pour déposer dans les entrepots
+    public void deposeMinerais(){
+        //todo
+    }
 }

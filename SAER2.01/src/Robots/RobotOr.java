@@ -1,6 +1,8 @@
+package Robots;
+
 import java.util.Random;
 
-public class RobotOr extends Robot{
+public class RobotOr extends Robot {
     private final int indice ;
     private int stockMax ;
     private int stockInitial ;
