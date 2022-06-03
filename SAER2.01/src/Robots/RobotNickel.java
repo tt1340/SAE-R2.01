@@ -1,18 +1,22 @@
 package Robots;
 
+import Entrepots.EntrepotNickel;
+import Robots.Robot;
+
+import java.util.Random;
+
 public class RobotNickel extends Robot {
-    private final int indice ;
-    private int stockMax ;
+    private final int stockMax ;
     private int stockInitial ;
-    private int capaciteExtraction ;
+    private final int capaciteExtraction ;
 
     // CONSTRUCTOR
-    public RobotNickel(){
-        super();
-        this.stockMax = 6 ;
+    public RobotNickel(int indice){
+        super(indice);
+        Random random = new Random();
+        this.stockMax = 5+random.nextInt(10-5);
         this.stockInitial = 0 ;
-        this.capaciteExtraction = 3 ;
-        this.indice = 0 ;
+        this.capaciteExtraction = 1+ random.nextInt(4-1);
     }
 
     // GETTER AND SETTER
@@ -28,21 +32,10 @@ public class RobotNickel extends Robot {
         return capaciteExtraction;
     }
 
-    public void setStockMax(int stockMax) {
-        this.stockMax = stockMax;
-    }
-
     public void setStockInitial(int stockInitial) {
         this.stockInitial = stockInitial;
     }
 
-    public void setCapaciteExtraction(int capaciteExtraction) {
-        this.capaciteExtraction = capaciteExtraction;
-    }
-
-    public int getIndice() {
-        return indice;
-    }
 
     public String toString(){
         String s = "";
@@ -52,18 +45,23 @@ public class RobotNickel extends Robot {
     }
 
     // methode pour calculer le nombre de minerais que peut prendre un robot
-    public int quantiteRecup(){
-        //todo
-        return 0;
-    }
-
-    // methode pour récupérer des minerais dans une mine
-    public void recupMinerais(int quantite){
-        //todo
+    public void quantiteRecup(int mineraisRecup){
+        if( !(this.getCapaciteExtraction() < mineraisRecup )){
+           if(this.getStockMax() > this.getStockInitial() + mineraisRecup){
+               this.setStockInitial(this.getStockInitial() + mineraisRecup);
+           }
+           else{
+               System.out.println("probleme"); //todo
+           }
+        }
+        else{
+            System.out.println("probleme"); //todo
+        }
     }
 
     // methode pour déposer dans les entrepots
-    public void deposeMinerais(){
-        //todo
+    public void deposeMinerais(EntrepotNickel entrepotNickel){
+        entrepotNickel.setStockage(entrepotNickel.getStockage() + this.getStockInitial());
     }
+
 }

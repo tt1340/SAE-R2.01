@@ -1,5 +1,6 @@
 package Monde;
 
+
 import Entrepots.EntrepotNickel;
 import Entrepots.EntrepotOr;
 import Mines.MineNickel;
@@ -7,9 +8,9 @@ import Mines.MineOr;
 import Obstacles.PlanEau;
 import Robots.RobotNickel;
 import Robots.RobotOr;
-import Monde.ComposantMonde;
 
 import java.util.ArrayList;
+
 
 public class Monde {
     // attributes
@@ -22,12 +23,14 @@ public class Monde {
     private EntrepotOr entrepotOr;
     private ComposantMonde[][] composantMondes;
     private int nbTour;
+    private AffichageService service = new AffichageService();
+    private DeplacementService deplacementService = new DeplacementService();
 
     //constructor
     public Monde(int nbMine, int nbPlanEau){
         this.nbTour = 0 ;
-        this.robotOr = new RobotOr();
-        this.robotNickel = new RobotNickel();
+        this.robotOr = new RobotOr(1);
+        this.robotNickel = new RobotNickel(2);
         this.entrepotNickel = new EntrepotNickel(1);
         this.entrepotOr = new EntrepotOr(2);
         this.planEaus = new ArrayList<>();
@@ -55,6 +58,14 @@ public class Monde {
         }
 
         else if(nbMine == 4){ // 2 OR // 2 NICKEL
+            this.mineNickels = new ArrayList<>();
+            this.mineNickels.add(new MineNickel(1));
+            this.mineNickels.add(new MineNickel(2));
+            this.mineOrs = new ArrayList<>();
+            this.mineOrs.add(new MineOr(1));
+            this.mineOrs.add(new MineOr(2));
+        }
+        else if (nbMine == 0 ){
             this.mineNickels = new ArrayList<>();
             this.mineNickels.add(new MineNickel(1));
             this.mineNickels.add(new MineNickel(2));
@@ -125,85 +136,129 @@ public class Monde {
         this.nbTour = nbTour;
     }
 
-    //TO STRING
-    // methode to string pour mine or (case)
-    public String toStringMineOrCase(){
-        //todo
-        return "";
+    // TO STRING
+
+    public String toString(){ //todo reparer
+        String general = "";
+        for(int i = 0 ; i < this.composantMondes.length; i++){
+            general = general + " \n";
+            for(int j = 0 ; j < this.composantMondes[0].length;j++){
+                for(int k = 0 ; k<this.mineOrs.size();k++){
+                    if(mineOrs.get(k).getX() == i && mineOrs.get(k).getY() == j){
+                        general = general + service.toStringMineOrCase(mineOrs.get(k));
+                    }
+                }
+                for (int k = 0 ; k <this.mineNickels.size();k++){
+                    if(mineNickels.get(k).getX() == i && mineNickels.get(k).getY() == j){
+                        general = general + service.toStringMineNickelCase(mineNickels.get(k));
+                    }
+                }
+                for (int k = 0 ; k< this.planEaus.size();k++){
+                    if(planEaus.get(k).getX() == i && planEaus.get(k).getY() == j){
+                        general = general + service.toStringPlanEauCase(planEaus.get(k));
+                    }
+                }
+
+                if(entrepotNickel.getX() == i && entrepotNickel.getY() == j){
+                    general = general + service.toStringEntrepotNickelCase(entrepotNickel);
+                }
+                if(entrepotOr.getX() == i && entrepotOr.getY() == j){
+                    general = general + service.toStringEntrepotOrCase(entrepotOr);
+                }
+                if(robotOr.getX() == i && robotOr.getY() == j ){
+                    general = general + service.vide();
+                }
+                if(robotNickel.getX() == i && robotNickel.getY() == j ) {
+                    general = general + service.vide();
+                }
+
+
+                for(int k = 0 ; k<this.mineOrs.size();k++){
+                    if(mineOrs.get(k).getX() == i && mineOrs.get(k).getY() == j){
+                        general = general + service.vide();
+                    }
+                }
+                for (int k = 0 ; k <this.mineNickels.size();k++){
+                    if(mineNickels.get(k).getX() == i && mineNickels.get(k).getY() == j){
+                        general = general + service.vide();
+                    }
+                }
+                for (int k = 0 ; k< this.planEaus.size();k++){
+                    if(planEaus.get(k).getX() == i && planEaus.get(k).getY() == j){
+                        general = general + service.toStringPlanEauCase(planEaus.get(k));
+                    }
+                }
+                for (int k = 0 ; k< this.planEaus.size();k++){
+                    if(planEaus.get(k).getX() == i && planEaus.get(k).getY() == j){
+                        general = general + service.toStringPlanEauCase(planEaus.get(k));
+                    }
+
+                }
+
+                if(entrepotNickel.getX() == i && entrepotNickel.getY() == j){
+                    general = general + service.vide();
+                }
+                if(entrepotOr.getX() == i && entrepotOr.getY() == j){
+                    general = general + service.vide();
+                }
+                if(robotOr.getX() == i && robotOr.getY() == j ){
+                    general = general + service.toStringRobotOrCase(robotOr);
+                }
+                if(robotNickel.getX() == i && robotNickel.getY() == j ){
+                    general = general + service.toStringRobotNickelCase(robotNickel);
+                }
+                for (int k = 0 ; k< this.planEaus.size();k++){
+                    if(planEaus.get(k).getX() == i && planEaus.get(k).getY() == j){
+                        general = general + service.toStringPlanEauCase(planEaus.get(k));
+                    }
+                }
+                if (!(this.getComposantMondes()[i][j] instanceof PlanEau || this.getComposantMondes()[i][j] instanceof RobotOr || this.getComposantMondes()[i][j] instanceof RobotNickel || this.getComposantMondes()[i][j] instanceof MineNickel || this.getComposantMondes()[i][j] instanceof MineOr || this.getComposantMondes()[i][j] instanceof EntrepotNickel || this.getComposantMondes()[i][j] instanceof EntrepotOr )) {
+                    general = general + service.vide();
+                }
+            }
+        }
+        return general;
+    }
+    public String toStringRecap(){
+        String resu = "";
+        for (int i = 0 ; i<this.mineNickels.size();i++){
+            resu = resu + service.toStringMineNickelRecap(mineNickels.get(i)) + "\n";
+        }
+        for (int i = 0 ; i<this.mineOrs.size();i++){
+            resu = resu + service.toStringMineOrRecap(mineOrs.get(i)) + "\n";
+        }
+        resu = resu + service.toStringEntrepotOrcRecap(entrepotOr) + "\n" ;
+        resu = resu + service.toStringEntrepotNickelRecap(entrepotNickel) + "\n";
+        resu = resu + service.toStringRobotOrRecap(robotOr) + " \n";
+        resu = resu + service.toStringRobotNickelRecap(robotNickel);
+        return resu ;
+    }
+    public void deplacementRobotOr(int entree,RobotOr robotOr){
+        if(entree == 1){
+            this.deplacementService.gauche(robotOr,this);
+        } else if(entree == 2){
+            this.deplacementService.bas(robotOr,this);
+        } else if(entree == 3){
+            this.deplacementService.droit(robotOr,this);
+        } else if(entree == 5){
+            this.deplacementService.haut(robotOr,this);
+        } else{
+            System.out.println("hmmm, pas bon");
+        }
     }
 
-    // methode to string pour mine or (recap)
-    public String toStringMineOrRecap(){
-        //todo
-        return "";
+    public void deplacementRobotNickel(int entree, RobotNickel robotNickel){
+        if(entree == 1){
+            this.deplacementService.gauche(robotNickel,this);
+        } else if(entree == 2){
+            this.deplacementService.bas(robotNickel,this);
+        } else if(entree == 3){
+            this.deplacementService.droit(robotNickel,this);
+        } else if(entree == 5){
+            this.deplacementService.haut(robotNickel,this);
+        } else{
+            System.out.println("hmmm, pas bon");
+        }
     }
-    // methode to string pour mine nickel (case)
-    public String toStringMineNickelCase(){
-        //todo
-        return "";
-    }
-    // methode to string pour mine nickel (recap)
-    public String toStringMineNickelRecap(){
-        //todo
-        return "";
-    }
-    // methode to string pour entrepot or (case)
-    public String toStringEntrepotOrCase(){
-        //todo
-        return"";
-    }
-    //methode to string pour entrepot or (recap)
-    public String toStringEntrepotOrRecap(){
-        //todo
-        return "";
-    }
-
-    // methode to string pour entrepot nickel (case)
-    public String toStringEntrepotNickelCase(){
-        //todo
-        return"";
-    }
-    // methode to string pour entrepot nickel(recap)
-    public String toStringEntrepotNickelRecap(){
-        //todo
-        return "";
-    }
-
-    // methode to string pour robot or (case)
-    public String toStringRobotOrCase(){
-        //todo
-        return "";
-    }
-    // methode to string pour robot or (recap)
-    public String toStringRobotOrRecap(){
-        //todo
-        return "";
-    }
-    //methode to string pour robot nickel (case)
-    public String toStringRobotNickelCase(){
-        //todo
-        return "";
-    }
-    // methode to string pour robot nickel (recap)
-    public String toStringRobotNickelRecap(){
-        //todo
-        return "";
-    }
-    // methode to string pour plan d'eau (case) pas de recap nécessaire
-    public String toStringPlanEauCase(){
-        //todo
-        return"";
-    }
-    // methode to string general pour afficher toutes les cases
-    public String toStringMondeCase(){
-        //todo
-        return "";
-    }
-    // methode to string pour le recap general
-    public String ToStringMondeRecap(){
-        //todo
-        return "";
-    }
-
 
 }

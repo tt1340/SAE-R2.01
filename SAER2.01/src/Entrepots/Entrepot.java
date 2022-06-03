@@ -11,4 +11,9 @@ public abstract  class Entrepot extends ObjetTerrain {
         super();
         this.indice = indice;
     }
+
+    public int getIndice() {
+        return indice;
+    }
+
 }

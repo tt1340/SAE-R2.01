@@ -33,24 +33,12 @@ public class MineOr extends Mine {
         this.orRestant = orRestant;
     }
 
-    // methode pour récupérer des minerais
-    public void minageOr(){
-        //todo
+    public void minageOr(int nb){
+        if(nb > this.getOrRestant() || nb > 0){
+            System.out.println("Problème"); //todo
+        }
+        else{
+            this.setOrRestant(this.orRestant-nb);
+        }
     }
-
-    // TO STRING METHOD
-    // affichage des données pour faire un recap du monde
-    public String toStringGeneral(){
-        String res ="M "+this.getIndice() + " ";
-        res = res + this.getX() + "\t" +  this.getY() + " OR " + this.getOrRestant() + " / " + this.getQuantiteOr();
-        return res;
-    }
-    public String toStringMap(){
-        String res = "_______\n";
-        res = res + "|M |"+this.getIndice()+" |\n";
-        res = res + "|  |  |\n¯¯¯¯¯¯¯";
-        return res ;
-    }
-
-
 }

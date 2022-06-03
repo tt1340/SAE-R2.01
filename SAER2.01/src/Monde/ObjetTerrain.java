@@ -12,8 +12,8 @@ public abstract class ObjetTerrain extends ComposantMonde {
     // constructor
     public ObjetTerrain() {
         Random random = new Random();
-        this.x = random.nextInt(10);
-        this.y = random.nextInt(10);
+        this.x = random.nextInt(9);
+        this.y = random.nextInt(9);
     }
 
     public int getY() {

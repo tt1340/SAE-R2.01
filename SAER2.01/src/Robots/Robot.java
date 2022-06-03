@@ -1,20 +1,21 @@
 package Robots;
 
+import Exceptions.PlanEauException;
 import Exceptions.SortieMapException;
 import Monde.ComposantMonde;
+
+import java.util.Random;
 
 public abstract class Robot extends ComposantMonde {
     private int x ;
     private int y ;
+    private final int indice;
 
-
-    public Robot(){
-        this.x = 0 ;
-        this.y = 0 ;
-    }
-    public Robot(int x , int y ){
-        this.x = x ;
-        this.y = y ;
+    public Robot(int indice ){
+        Random random = new Random();
+        this.x = random.nextInt(10) ;
+        this.y = random.nextInt(10) ;
+        this.indice = indice;
     }
 
 
@@ -33,64 +34,8 @@ public abstract class Robot extends ComposantMonde {
         this.x = x;
     }
 
-    /*
-    code a verifer et tester
-     */
-
-    //methode de déplacement gauche
-    public void gauche(){
-        try{
-            if(this.getY()-1 < 0){
-                throw new SortieMapException();
-            } else{
-                this.setY(this.getY()-1);
-            }
-        }
-        catch(SortieMapException e){
-            e.printStackTrace();
-        }
-    }
-    //methode de déplacement droit
-    public void droite(){
-        try{
-            if(this.getY()+1 > 10){
-                throw new SortieMapException();
-            }
-            else{
-                this.setY(this.getY()+1);
-            }
-        }
-        catch(SortieMapException e){
-            e.printStackTrace();
-        }
-    }
-    //methode de déplacement haut
-    public void haut(){
-        try{
-            if(this.getX()-1 < 0){
-                throw new SortieMapException();
-            }
-            else{
-                this.setX(this.getX()-1);
-            }
-        }
-        catch(SortieMapException e){
-            e.printStackTrace();
-        }
-    }
-    //methode de déplacement bas
-    public void bas(){
-        try {
-            if(this.getX()+1 > 10){
-                throw new SortieMapException();
-            }
-            else{
-                this.setX(this.getX()+1);
-            }
-        }
-        catch(SortieMapException e){
-            e.printStackTrace();
-        }
+    public int getIndice() {
+        return indice;
     }
 
 }

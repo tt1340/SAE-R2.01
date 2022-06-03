@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class MineNickel extends Mine {
     private final int indice ;
-    private int quantiteNickel ;
+    private final int quantiteNickel ;
     private int nickelRestant ;
 
     public MineNickel(int indice){
@@ -19,10 +19,6 @@ public class MineNickel extends Mine {
         return quantiteNickel;
     }
 
-    public void setQuantiteNickel(int quantiteNickel) {
-        this.quantiteNickel = quantiteNickel;
-    }
-
     public int getIndice() {
         return indice;
     }
@@ -35,22 +31,12 @@ public class MineNickel extends Mine {
         this.nickelRestant = nickelRestant;
     }
 
-    // methode pour récupérer des minerais
-    public void recupNickel(){
-        //todo
-    }
-
-    // TO STRING METHOD
-    // affichage des données pour faire un recap du monde
-    public String toStringGeneral(){
-        String res ="M "+this.getIndice() + " ";
-        res = res  +  this.getX() + "\t" +  this.getY() + " NI " + this.getNickelRestant() + " / " + this.getQuantiteNickel();
-        return res;
-    }
-    public String toStringMap(){
-        String res = "_______\n";
-        res = res + "|M |"+this.getIndice()+" |\n";
-        res = res + "|  |  |\n¯¯¯¯¯¯¯";
-        return res ;
+    public void minageNickel(int nb){
+        if(nb > this.getNickelRestant() || nb > 0){
+            System.out.println("Problème"); //todo
+        }
+        else{
+            this.setNickelRestant(this.nickelRestant-nb);
+        }
     }
 }
